@@ -22,12 +22,18 @@ Should be user-friendly
 19. Save exceptions?
 20. Logging? (my idea)
 21. External libraries can be used to READ DATA, not validate!
+22. If vector as collection -> ask Martin
+23. Singleton - antipattern
 */
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
+    private Map<String, Command> history = new HashMap<>();
     public static void main(String[] args) {
         /*
         1. How to read from console? By line, by symbol?
@@ -35,7 +41,6 @@ public class Main {
         */
         System.out.println(System.getProperty("user.dir"));
         Scanner sc;
-
         try {
             sc = new Scanner(new File("input.txt"));
         }
@@ -44,16 +49,24 @@ public class Main {
             System.err.println("File not found!");
         }
 
+        Main main = new Main();
+
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
-
             System.out.println(input);
             if (input.equals("exit")) {
                 System.exit(0);
             }
 
-            if  (input.equals("help")) {
+            if  (input.equals("history")) {
+                System.out.println(main.history);
+                Object[] commands =  main.history.values().stream().toArray();
+                System.out.println(Arrays.toString(commands));
+            }
+            else if  (input.equals("help")) {
                 System.out.println("List of commands");
+                new HelpCommand("help", main.history).execute();
+
             }
         }
     }
