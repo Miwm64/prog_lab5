@@ -17,6 +17,11 @@ Should be user-friendly
 14. MUST never exit program, unless user specifically asks to exit
 15. command entity?
 16. Separate entity for working with input
+17. Command history
+18 Check for overflow, work with large numbers?
+19. Save exceptions?
+20. Logging? (my idea)
+21. External libraries can be used to READ DATA, not validate!
 */
 
 import java.util.Scanner;
@@ -42,11 +47,14 @@ public class Main {
 }
 
 
-/*
-Menu
-Input
-Validation
-Action
+/* help
+1. Menu
+2. Input
+3. Validation
+4. Create command object, add to history
+5. Action if command is correct
+    Maybe ask for additional input
+    Print error, maybe save?
 */
 
 /*
@@ -57,5 +65,7 @@ Command
 Validation
 Models
 Container(my idea)
-Smth from se.ifmo
+Smth from se.ifmo(perhaps container entity)
+Logger
+File module: producer, validator, loader. External libraries can be used to READ DATA, not validate!
  */
