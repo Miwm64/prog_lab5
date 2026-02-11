@@ -1,3 +1,6 @@
 help
-show
+add
+12
+12
+history
 exit

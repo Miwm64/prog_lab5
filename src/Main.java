@@ -24,16 +24,17 @@ Should be user-friendly
 21. External libraries can be used to READ DATA, not validate!
 22. If vector as collection -> ask Martin
 23. Singleton - antipattern
+24. Either execute can accept input args or constructor should(or smhw throw through invoker)
+or smth else?
+25. minimize main
 */
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private Map<String, Command> history = new HashMap<>();
+    private CollectionManager collectionManager = new CollectionManager();
     public static void main(String[] args) {
         /*
         1. How to read from console? By line, by symbol?
@@ -58,6 +59,10 @@ public class Main {
                 System.exit(0);
             }
 
+            if (input.equals("add")){
+                new AddCommand(main.history, main.collectionManager).execute(InputValidator.addInput());
+            }
+
             if  (input.equals("history")) {
                 System.out.println(main.history);
                 Object[] commands =  main.history.values().stream().toArray();
@@ -65,7 +70,7 @@ public class Main {
             }
             else if  (input.equals("help")) {
                 System.out.println("List of commands");
-                new HelpCommand("help", main.history).execute();
+                new HelpCommand("help", main.history).execute(null);
 
             }
         }
@@ -86,7 +91,7 @@ public class Main {
 /*
 Project structure(entities):
 Main
-Invoker - whatever it is
+Invoker - you register commands, then run them
 Command
 Validation
 Models

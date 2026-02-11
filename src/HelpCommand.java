@@ -9,8 +9,8 @@ public class HelpCommand implements Command {
         this.commands = commands;
     }
     @Override
-    public void execute() {
-        System.out.println("Help Command: " + name);
+    public void execute(Input input) {
+        System.out.println("List of commands");
         commands.put("help"+commands.size(), this);
     }
 
