@@ -34,12 +34,13 @@ public class Main {
         Need to work with string, its validation
         */
         System.out.println(System.getProperty("user.dir"));
-        Scanner sc =  new Scanner(System.in);
+        Scanner sc;
 
         try {
             sc = new Scanner(new File("input.txt"));
         }
         catch (Exception e) {
+            sc = new Scanner(System.in);
             System.err.println("File not found!");
         }
 
