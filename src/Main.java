@@ -24,6 +24,7 @@ Should be user-friendly
 21. External libraries can be used to READ DATA, not validate!
 */
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -32,12 +33,23 @@ public class Main {
         1. How to read from console? By line, by symbol?
         Need to work with string, its validation
         */
-        Scanner sc = new Scanner(System.in);
+        System.out.println(System.getProperty("user.dir"));
+        Scanner sc =  new Scanner(System.in);
 
-        while (true) {
+        try {
+            sc = new Scanner(new File("input.txt"));
+        }
+        catch (Exception e) {
+            System.err.println("File not found!");
+        }
+
+        while (sc.hasNextLine()) {
             String input = sc.nextLine();
 
             System.out.println(input);
+            if (input.equals("exit")) {
+                System.exit(0);
+            }
 
             if  (input.equals("help")) {
                 System.out.println("List of commands");
